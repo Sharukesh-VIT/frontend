@@ -1,0 +1,312 @@
+import React, { useState, useEffect } from 'react';
+import { Shield, Lock, Brain, CheckCircle, Users, TrendingUp, Zap, Eye, AlertCircle } from 'lucide-react';
+
+export default function VoteChainAI() {
+  const [scrolled, setScrolled] = useState(false);
+  const [activeFeature, setActiveFeature] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveFeature(prev => (prev + 1) % 3);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const features = [
+    {
+      icon: <Shield className="w-12 h-12" />,
+      title: "Blockchain Security",
+      description: "Immutable ledger technology ensures every vote is permanently recorded and tamper-proof",
+      color: "from-blue-500 to-cyan-500"
+    },
+    {
+      icon: <Brain className="w-12 h-12" />,
+      title: "AI Fraud Detection",
+      description: "Advanced machine learning algorithms identify and prevent voting anomalies in real-time",
+      color: "from-purple-500 to-pink-500"
+    },
+    {
+      icon: <Lock className="w-12 h-12" />,
+      title: "End-to-End Encryption",
+      description: "Military-grade encryption protects voter identity while maintaining transparency",
+      color: "from-green-500 to-emerald-500"
+    }
+  ];
+
+  const benefits = [
+    { icon: <CheckCircle />, text: "Eliminates double voting" },
+    { icon: <CheckCircle />, text: "Prevents vote manipulation" },
+    { icon: <CheckCircle />, text: "Stops identity spoofing" },
+    { icon: <CheckCircle />, text: "Complete audit trail" },
+    { icon: <CheckCircle />, text: "Real-time verification" },
+    { icon: <CheckCircle />, text: "Decentralized consensus" }
+  ];
+
+  const stats = [
+    { icon: <Users />, value: "100%", label: "Voter Privacy" },
+    { icon: <Shield />, value: "0", label: "Tampering Cases" },
+    { icon: <TrendingUp />, value: "99.9%", label: "System Uptime" },
+    { icon: <Zap />, value: "<3s", label: "Vote Processing" }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+      {/* Animated Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-75"></div>
+        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-150"></div>
+      </div>
+
+      {/* Navigation */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-900/95 backdrop-blur-lg shadow-lg' : ''}`}>
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <Shield className="w-6 h-6" />
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                VoteChain.AI
+              </span>
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <a href="#features" className="hover:text-blue-400 transition-colors">Features</a>
+              <a href="#how-it-works" className="hover:text-blue-400 transition-colors">How It Works</a>
+              <a href="#security" className="hover:text-blue-400 transition-colors">Security</a>
+            </div>
+            <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105">
+              Get Started
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="mb-6 inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-2">
+            <Zap className="w-4 h-4 text-blue-400" />
+            <span className="text-sm text-blue-300">Next-Generation E-Voting Platform</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            Digital Votes,
+            <br />
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Encrypted Voices
+            </span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+            Revolutionizing democracy with blockchain security and AI-powered fraud detection. 
+            Transparent, tamper-proof, and trustworthy voting for the digital age.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-xl">
+              Start Voting Now
+              <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
+            </button>
+            <button className="border-2 border-blue-400/30 hover:border-blue-400 px-8 py-4 rounded-xl font-bold text-lg transition-all backdrop-blur-sm">
+              Watch Demo
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
+            {stats.map((stat, idx) => (
+              <div key={idx} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-blue-500/50 transition-all">
+                <div className="text-blue-400 mb-2 flex justify-center">{stat.icon}</div>
+                <div className="text-3xl font-bold mb-1">{stat.value}</div>
+                <div className="text-gray-400 text-sm">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Powered by Advanced Technology
+            </h2>
+            <p className="text-xl text-gray-400">
+              Combining blockchain immutability with AI intelligence
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((feature, idx) => (
+              <div
+                key={idx}
+                className={`group relative bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 transition-all duration-500 hover:scale-105 cursor-pointer ${
+                  activeFeature === idx ? 'border-blue-500/50 shadow-2xl shadow-blue-500/20' : ''
+                }`}
+                onMouseEnter={() => setActiveFeature(idx)}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity`}></div>
+                <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${feature.color} mb-6 text-white`}>
+                  {feature.icon}
+                </div>
+                <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="how-it-works" className="py-20 px-6 bg-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Simple, Secure, Seamless
+            </h2>
+            <p className="text-xl text-gray-400">
+              Three steps to secure democratic participation
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              { num: "01", title: "Verify Identity", desc: "Multi-factor authentication and biometric verification ensure only authorized voters participate" },
+              { num: "02", title: "Cast Your Vote", desc: "Encrypted ballot submission recorded on blockchain with instant cryptographic proof" },
+              { num: "03", title: "Track & Verify", desc: "Real-time vote verification and transparent audit trail without compromising anonymity" }
+            ].map((step, idx) => (
+              <div key={idx} className="relative">
+                <div className="text-8xl font-bold text-blue-500/10 mb-4">{step.num}</div>
+                <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{step.desc}</p>
+                {idx < 2 && (
+                  <div className="hidden md:block absolute top-12 right-0 w-full">
+                    <div className="w-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-transparent ml-auto"></div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Grid */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Why VoteChain.AI?
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {benefits.map((benefit, idx) => (
+              <div key={idx} className="flex items-center space-x-4 bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-green-500/50 transition-all">
+                <div className="text-green-400">{benefit.icon}</div>
+                <span className="text-lg">{benefit.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Security Showcase */}
+      <section id="security" className="py-20 px-6 bg-gradient-to-b from-transparent to-blue-900/20">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-12 border border-white/10">
+            <div className="flex items-center justify-center mb-8">
+              <div className="bg-gradient-to-br from-red-500 to-orange-500 p-4 rounded-2xl">
+                <AlertCircle className="w-12 h-12" />
+              </div>
+            </div>
+            <h2 className="text-4xl font-bold text-center mb-6">
+              Traditional Voting Vulnerabilities Eliminated
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8 mt-12">
+              {[
+                { threat: "Double Voting", solution: "Blockchain prevents duplicate entries" },
+                { threat: "Vote Manipulation", solution: "Immutable ledger ensures integrity" },
+                { threat: "Identity Spoofing", solution: "AI-powered verification detects fraud" }
+              ].map((item, idx) => (
+                <div key={idx} className="text-center">
+                  <div className="line-through text-red-400 text-xl mb-2">{item.threat}</div>
+                  <div className="text-green-400 font-semibold flex items-center justify-center">
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    {item.solution}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Ready to Transform Democracy?
+          </h2>
+          <p className="text-xl text-gray-400 mb-12">
+            Join organizations worldwide that trust VoteChain.AI for secure, transparent elections
+          </p>
+          <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-12 py-5 rounded-xl font-bold text-xl transition-all transform hover:scale-105 shadow-2xl">
+            Schedule a Demo
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <Shield className="w-5 h-5" />
+                </div>
+                <span className="text-xl font-bold">VoteChain.AI</span>
+              </div>
+              <p className="text-gray-400 text-sm">Securing democracy through blockchain and AI</p>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Platform</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-blue-400">Features</a></li>
+                <li><a href="#" className="hover:text-blue-400">Security</a></li>
+                <li><a href="#" className="hover:text-blue-400">Pricing</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Resources</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-blue-400">Documentation</a></li>
+                <li><a href="#" className="hover:text-blue-400">API Reference</a></li>
+                <li><a href="#" className="hover:text-blue-400">Support</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Company</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-blue-400">About Us</a></li>
+                <li><a href="#" className="hover:text-blue-400">Contact</a></li>
+                <li><a href="#" className="hover:text-blue-400">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-white/10 pt-8 text-center text-gray-400 text-sm">
+            <p>© 2025 VoteChain.AI. All rights reserved. Powered by Blockchain & AI Technology.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
